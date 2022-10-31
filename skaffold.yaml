@@ -1,0 +1,25 @@
+apiVersion: skaffold/v3alpha1 
+kind: Config
+metadata:
+  name: aj-site
+build:
+  artifacts:
+  - image: ajaykumar4/aj-site
+    context: .
+    kaniko:
+      cleanup: true
+      insecure: true
+      logTimestamp: true
+      reproducible: true	
+      singleSnapshot: true
+      useNewRun: true
+      whitelistVarRun: true
+      dockerfile: Dockerfile
+      image: gcr.io/kaniko-project/executor:latest
+  cluster:
+    dockerConfig:
+      #path: ~/.docker/config.json
+      secretName: docker-cfg
+manifests:
+  rawYaml:
+  - kaniko.yaml
