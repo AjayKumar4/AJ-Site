@@ -18,8 +18,8 @@ RUN apk --no-cache add shadow \
 WORKDIR /app
 COPY . .
 
-RUN yarn
-RUN yarn build
+RUN npm install
+RUN npm run-script build
 
 FROM nginx:1.18-alpine AS deploy
 
