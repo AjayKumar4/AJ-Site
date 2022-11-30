@@ -26,3 +26,5 @@ FROM httpd:alpine AS deploy
 WORKDIR /usr/local/apache2/htdocs/
 RUN rm -rf ./*
 COPY --from=build /app/public .
+
+EXPOSE 80
